@@ -1,0 +1,35 @@
+type Query {
+  wizard(id: String!): Wizard
+}
+
+enum HogwartsHouse{
+    GRYFFINDOR
+    RAVENCLAW
+    SLYTHERIN
+    HUFFLEPUFF
+}
+
+type Wizard{
+  id: String!
+  name: String!
+  house: HogwartsHouse!
+  friends: [Wizard!]
+}
+
+type Mutation {
+    # Creates a new wizard
+    createWizard(input: CreateWizardInput!): Wizard
+    # Updates an existing wizard
+    addFriendsToWizard(wizardId: String!, friendId: String!): Wizard
+    # deletes a new wizard
+    deleteWizard(wizardId: String!): Wizard
+}
+
+input CreateWizardInput {
+    # id of the wizard
+    id: String!
+    # The name of the wizard
+    name: String!
+    # The hogwarts house of the human
+    house: HogwartsHouse!
+}
